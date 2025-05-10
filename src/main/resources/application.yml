@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    # H2 CONFIG (disabled)
+    # url: jdbc:h2:mem:login-db
+    # driver-class-name: org.h2.Driver
+    # username: sa
+    # password:
+
+    # POSTGRES CONFIG (enabled)
+    url: jdbc:postgresql://localhost:5432/peoplehub
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# H2 console (disabled)
+# spring:
+#   h2:
+#     console:
+#       enabled: true
+
+# Optional custom port
+# server:
+#   port: 8080
