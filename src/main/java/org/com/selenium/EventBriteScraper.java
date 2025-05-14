@@ -41,7 +41,10 @@ public class EventBriteScraper {
 
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-         options.addArguments("--headless=new"); // Enable this for headless mode
+        options.addArguments("--headless=new"); // Enable this for headless mode
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-gpu");
         options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
         options.setExperimentalOption("useAutomationExtension", false);
