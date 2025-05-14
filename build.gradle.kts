@@ -57,5 +57,5 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 application {
-    mainClass.set("org.Main")
+    mainClass.set("org.com.Main")
 }

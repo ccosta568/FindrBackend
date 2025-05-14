@@ -6,11 +6,19 @@ spring:
     # username: sa
     # password:
 
-    # POSTGRES CONFIG (enabled)
-    url: jdbc:postgresql://localhost:5432/peoplehub
-    driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: 1234
+    # POSTGRES CONFIG (disabled)
+    # url: jdbc:postgresql://localhost:5432/peoplehub
+    # driver-class-name: org.postgresql.Driver
+    # username: postgres
+    # password: 1234
+
+    #For NEON DB SetUp
+    url: jdbc:postgresql://ep-rapid-dew-a4323185-pooler.us-east-1.aws.neon.tech:5432/neondb?sslmode=require
+    username: neondb_owner
+    password: npg_e8nkLGpAtcB6
+    hikari:
+      data-source-properties:
+        sslmode: require
 
   jpa:
     hibernate:
