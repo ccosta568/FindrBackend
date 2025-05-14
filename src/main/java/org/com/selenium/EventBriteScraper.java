@@ -41,7 +41,7 @@ public class EventBriteScraper {
 
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        // options.addArguments("--headless=new"); // Enable this for headless mode
+         options.addArguments("--headless=new"); // Enable this for headless mode
         options.addArguments("--disable-gpu");
         options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
         options.setExperimentalOption("useAutomationExtension", false);
@@ -64,7 +64,7 @@ public class EventBriteScraper {
                 System.out.println("Explore more events link not found or clickable — continuing anyway.");
             }
 
-            Thread.sleep(5000); // Let results load
+            Thread.sleep(1000); // Let results load
 
             List<WebElement> eventTitles = driver.findElements(By.cssSelector("h3.Typography_root__487rx"));
             List<WebElement> eventPrices = driver.findElements(By.xpath("//div[contains(@class, 'priceWrapper')]//p"));
