@@ -37,6 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/events/eventbrite").permitAll()
                         .requestMatchers("/api/favorites/**").authenticated()
                         .requestMatchers("/api/discards/**").authenticated()
+                        .requestMatchers("/api/health").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
