@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ControllerHealth {
 
-    @GetMapping("/health")  // Change this to just /health
+    @GetMapping("/api/health")
     public String healthCheck() {
+        System.out.println("Health check called");  // Add this line
         return "OK";
     }
 }
