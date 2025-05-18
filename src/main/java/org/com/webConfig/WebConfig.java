@@ -11,10 +11,11 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         // Allow CORS for all endpoints
         registry.addMapping("/**")  // Allow CORS for all paths
-                .allowedOrigins("https://www.getfindr.com")
+                .allowedOrigins("https://getfindr.com", "https://www.getfindr.com")
              //   .allowedOrigins("http://localhost:4200") // Allow frontend to access backend (Angular on port 4200)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allowed methods
                 .allowedHeaders("*") // Allow all headers
-                .allowCredentials(true); // Allow credentials (cookies, authorization headers, etc.)
+                .allowCredentials(true) // Allow credentials (cookies, authorization headers, etc.)
+                .maxAge(3600);
     }
 }

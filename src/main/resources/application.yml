@@ -19,6 +19,8 @@ spring:
     hikari:
       data-source-properties:
         sslmode: require
+        maximum-pool-size: 5
+        connection-timeout: 30000
 
   jpa:
     hibernate:
@@ -27,6 +29,17 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  server:
+    port: 8080
+    forward-headers-strategy: NATIVE
+    tomcat:
+      remoteip:
+        remote-ip-header: x-forwarded-for
+        protocol-header: x-forwarded-proto
+      use-relative-redirects: true
+
+  security:
+    require-ssl: false  # Set to true if you want to force HTTPS
 
 # H2 console (disabled)
 # spring:
