@@ -15,6 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
              //   .allowedOrigins("http://localhost:4200") // Allow frontend to access backend (Angular on port 4200)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allowed methods
                 .allowedHeaders("*") // Allow all headers
+                .exposedHeaders("Authorization")
                 .allowCredentials(true) // Allow credentials (cookies, authorization headers, etc.)
                 .maxAge(3600);
     }
