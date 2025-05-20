@@ -26,7 +26,6 @@ public class SecurityConfig {
         http
                 .cors(cors -> {})  // Enable CORS support, config in WebConfig
                 .csrf(csrf -> csrf.disable())
-                .securityMatcher("/api/**")
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/health").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
