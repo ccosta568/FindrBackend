@@ -30,7 +30,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   server:
-    port: ${PORT:8080}
+    port: 8080
     forward-headers-strategy: NATIVE
     tomcat:
       remoteip:
@@ -40,6 +40,10 @@ spring:
 
   security:
     require-ssl: false  # Set to true if you want to force HTTPS
+
+logging:
+  level:
+    org.springframework.security: DEBUG
 
 # H2 console (disabled)
 # spring:
