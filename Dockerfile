@@ -1,3 +1,10 @@
+# Build stage
+FROM gradle:8.5-jdk17 AS build
+COPY --chown=gradle:gradle . /app
+WORKDIR /app
+RUN gradle build -x test
+
+# Run stage
 FROM openjdk:17-slim
 
 # Install dependencies and Google Chrome
