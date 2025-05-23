@@ -39,7 +39,8 @@ public class EventBriteScraper {
     private List<Event> scrapeEvents(String location) {
         List<Event> events = new ArrayList<>();
 
-        WebDriverManager.chromedriver().setup();
+   //   WebDriverManager.chromedriver().setup(); for localhost
+        WebDriverManager.chromedriver().driverVersion("116.0.5845.96").setup(); //Version 116 match it with Dockerfile
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new"); // Enable this for headless mode
         options.addArguments("--no-sandbox");
@@ -117,7 +118,7 @@ public class EventBriteScraper {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // driver.quit(); // Uncomment when running outside development
+             driver.quit(); // Uncomment when running outside development
         }
 
         return events;
