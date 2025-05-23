@@ -4,7 +4,7 @@ COPY --chown=gradle:gradle . /app
 WORKDIR /app
 RUN gradle build -x test
 
-# Run stage (using non-slim openjdk base image)
+# Run stage
 FROM openjdk:17
 
 # Install dependencies for Chrome
@@ -36,23 +36,23 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
     apt-get install -y ./google-chrome-stable_current_amd64.deb && \
     rm google-chrome-stable_current_amd64.deb
 
-# Install matching ChromeDriver (adjust version if needed)
+# Install matching ChromeDriver (116.0.5845.96)
 RUN wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip && \
     unzip chromedriver-linux64.zip && \
     mv chromedriver-linux64/chromedriver /usr/local/bin/chromedriver && \
     chmod +x /usr/local/bin/chromedriver && \
     rm -rf chromedriver-linux64.zip chromedriver-linux64
 
-# Set working directory
+# Setup working directory
 WORKDIR /app
 
-# Copy built jar from build stage
+# Copy app jar
 COPY --from=build /app/build/libs/*.jar app.jar
 
-# Expose Spring Boot port
+# Expose the Spring Boot port
 EXPOSE 8080
 
-# Run the app
+# Run the Spring Boot app
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
 
