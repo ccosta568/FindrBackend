@@ -7,7 +7,7 @@ RUN gradle build -x test
 # Run stage
 FROM openjdk:17-slim
 
-# Install dependencies for Chrome
+# Install Chrome dependencies
 RUN apt-get update && apt-get install -y \
     wget \
     unzip \
@@ -24,29 +24,23 @@ RUN apt-get update && apt-get install -y \
     libxdamage1 \
     libxrandr2 \
     xdg-utils \
-    --no-install-recommends && rm -rf /var/lib/apt/lists/*
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install Google Chrome Stable (116.0.5845.96)
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_116.0.5845.96-1_amd64.deb && \
-    apt-get install -y ./google-chrome-stable_116.0.5845.96-1_amd64.deb && \
-    rm google-chrome-stable_116.0.5845.96-1_amd64.deb
+# Install latest stable Google Chrome
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    apt-get install -y ./google-chrome-stable_current_amd64.deb && \
+    rm google-chrome-stable_current_amd64.deb
 
-# Install matching ChromeDriver (116.0.5845.96)
-RUN wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip && \
-    unzip chromedriver-linux64.zip && \
-    mv chromedriver-linux64/chromedriver /usr/local/bin/chromedriver && \
-    chmod +x /usr/local/bin/chromedriver && \
-    rm -rf chromedriver-linux64.zip chromedriver-linux64
-
-# Setup working directory
+# Working dir
 WORKDIR /app
 
-# Copy app jar
+# Copy built JAR from Gradle build
 COPY --from=build /app/build/libs/*.jar app.jar
 
-# Expose the Spring Boot port
+# Expose port
 EXPOSE 8080
 
-# Run the Spring Boot app
+# Run Spring Boot
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
