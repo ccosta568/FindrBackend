@@ -12,10 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -42,7 +39,7 @@ public class EventBriteScraper {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new"); // Enable this for headless mode
+     //   options.addArguments("--headless=new"); // Enable this for headless mode
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");
@@ -51,8 +48,13 @@ public class EventBriteScraper {
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
 
+        // Disable image loading to improve performance
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("profile.managed_default_content_settings.images", 2);
+        options.setExperimentalOption("prefs", prefs);
+
         WebDriver driver = new ChromeDriver(options);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3)); //try to speed up
 
         try {
             String zipSlug = location.replaceAll("\\s+", "-").toLowerCase();
@@ -68,7 +70,7 @@ public class EventBriteScraper {
                 System.out.println("Explore more events link not found or clickable — continuing anyway.");
             }
 
-            Thread.sleep(1000); // Let results load
+            Thread.sleep(500); // Let results load try to speed this up
 
             List<WebElement> eventTitles = driver.findElements(By.cssSelector("h3.Typography_root__487rx"));
             List<WebElement> eventPrices = driver.findElements(By.xpath("//div[contains(@class, 'priceWrapper')]//p"));

@@ -52,7 +52,7 @@ public class SecurityConfig {
         config.setAllowedOrigins(List.of(
                 "https://getfindr.com",
                 "https://www.getfindr.com"
-                // "http://localhost:4200" // Uncomment if needed for local dev
+             //    "http://localhost:4200" // Uncomment if needed for local dev
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
