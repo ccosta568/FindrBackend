@@ -45,7 +45,6 @@ public class EventBriteScraper {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-gpu");
         options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
-        options.addArguments("--user-data-dir=/tmp/chrome-profile");
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
 
