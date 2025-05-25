@@ -45,6 +45,7 @@ public class EventBriteScraper {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-gpu");
         options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
+        options.addArguments("--user-data-dir=/tmp/chrome-profile");
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
 
@@ -54,7 +55,7 @@ public class EventBriteScraper {
         options.setExperimentalOption("prefs", prefs);
 
         WebDriver driver = new ChromeDriver(options);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); //try to speed up
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3)); //try to speed up
 
         try {
             String zipSlug = location.replaceAll("\\s+", "-").toLowerCase();
@@ -70,7 +71,7 @@ public class EventBriteScraper {
                 System.out.println("Explore more events link not found or clickable — continuing anyway.");
             }
 
-            Thread.sleep(1000); // Let results load try to speed this up
+            Thread.sleep(500); // Let results load try to speed this up
 
             List<WebElement> eventTitles = driver.findElements(By.cssSelector("h3.Typography_root__487rx"));
             List<WebElement> eventPrices = driver.findElements(By.xpath("//div[contains(@class, 'priceWrapper')]//p"));
