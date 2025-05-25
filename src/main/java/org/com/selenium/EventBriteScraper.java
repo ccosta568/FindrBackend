@@ -54,7 +54,7 @@ public class EventBriteScraper {
         options.setExperimentalOption("prefs", prefs);
 
         WebDriver driver = new ChromeDriver(options);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); //try to speed up
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); //try to speed up
 
         try {
             String zipSlug = location.replaceAll("\\s+", "-").toLowerCase();
@@ -70,7 +70,7 @@ public class EventBriteScraper {
                 System.out.println("Explore more events link not found or clickable — continuing anyway.");
             }
 
-            Thread.sleep(500); // Let results load try to speed this up
+            Thread.sleep(1000); // Let results load try to speed this up
 
             List<WebElement> eventTitles = driver.findElements(By.cssSelector("h3.Typography_root__487rx"));
             List<WebElement> eventPrices = driver.findElements(By.xpath("//div[contains(@class, 'priceWrapper')]//p"));
