@@ -51,8 +51,8 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
                 "https://getfindr.com",
-                "https://www.getfindr.com",
-                 "http://localhost:4200" // Uncomment if needed for local dev
+                "https://www.getfindr.com"
+            //     "http://localhost:4200" // Uncomment if needed for local dev
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
