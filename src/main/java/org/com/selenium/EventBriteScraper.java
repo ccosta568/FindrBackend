@@ -39,7 +39,7 @@ public class EventBriteScraper {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new"); // Enable this for headless mode
+     //   options.addArguments("--headless=new"); // Enable this for headless mode
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");
@@ -54,7 +54,7 @@ public class EventBriteScraper {
         options.setExperimentalOption("prefs", prefs);
 
         WebDriver driver = new ChromeDriver(options);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3)); //try to speed up
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); //try to speed up
 
         try {
             String zipSlug = location.replaceAll("\\s+", "-").toLowerCase();
