@@ -39,7 +39,7 @@ public class EventBriteScraper {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-     //   options.addArguments("--headless=new"); // Enable this for headless mode
+        options.addArguments("--headless=new"); // Enable this for headless mode
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");
